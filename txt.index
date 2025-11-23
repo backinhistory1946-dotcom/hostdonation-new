@@ -1,0 +1,1422 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hope For Homeless - Make a Difference</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .page {
+      min-height: 100%;
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* Home Page Styles */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.3em;
+      margin-bottom: 40px;
+      opacity: 0.95;
+    }
+
+    .donate-btn {
+      background: white;
+      color: #667eea;
+      padding: 18px 50px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .donate-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .mission {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .mission h2 {
+      font-size: 2.5em;
+      color: #2d3748;
+      margin-bottom: 20px;
+    }
+
+    .mission p {
+      font-size: 1.2em;
+      color: #4a5568;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .gallery-item {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-10px);
+    }
+
+    .gallery-item svg {
+      width: 100%;
+      height: 250px;
+    }
+
+    .gallery-caption {
+      padding: 20px;
+      background: white;
+      text-align: center;
+    }
+
+    .gallery-caption h3 {
+      color: #2d3748;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+    }
+
+    .gallery-caption p {
+      color: #718096;
+      line-height: 1.6;
+    }
+
+    .impact {
+      background: #f7fafc;
+      padding: 60px 20px;
+      margin-top: 60px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .stat-number {
+      font-size: 3em;
+      color: #667eea;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      color: #4a5568;
+      font-size: 1.1em;
+    }
+
+    footer {
+      background: #2d3748;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+
+    /* Payment Page Styles */
+    .payment-page {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100%;
+      padding: 40px 20px;
+    }
+
+    .payment-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .back-btn {
+      background: #e2e8f0;
+      color: #4a5568;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      margin-bottom: 30px;
+      transition: background 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #cbd5e0;
+    }
+
+    .payment-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .payment-header h2 {
+      color: #2d3748;
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+
+    .payment-header p {
+      color: #718096;
+      font-size: 1.1em;
+    }
+
+    .crypto-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      display: block;
+    }
+
+    .wallet-section {
+      background: #f7fafc;
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+    }
+
+    .wallet-label {
+      color: #4a5568;
+      font-size: 1em;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .wallet-address {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      word-break: break-all;
+      font-family: 'Courier New', monospace;
+      color: #2d3748;
+      border: 2px solid #e2e8f0;
+      margin-bottom: 15px;
+    }
+
+    .copy-btn {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      width: 100%;
+      transition: background 0.3s ease;
+      font-weight: 600;
+    }
+
+    .copy-btn:hover {
+      background: #5568d3;
+    }
+
+    .copy-btn.copied {
+      background: #48bb78;
+    }
+
+    .qr-section {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .qr-code {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      display: inline-block;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .instructions {
+      background: #fff5e1;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 4px solid #f59e0b;
+    }
+
+    .instructions h3 {
+      color: #92400e;
+      margin-bottom: 15px;
+      font-size: 1.2em;
+    }
+
+    .instructions ol {
+      color: #78350f;
+      padding-left: 20px;
+      line-height: 1.8;
+    }
+
+    .instructions li {
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2em;
+      }
+
+      .hero p {
+        font-size: 1.1em;
+      }
+
+      .mission h2 {
+        font-size: 1.8em;
+      }
+
+      .payment-container {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body><!-- Home Page -->
+  <div id="homePage" class="page active">
+   <header class="hero">
+    <h1 id="mainTitle">Together We Can End Homelessness</h1>
+    <p id="subtitle">Your donation brings hope, warmth, and a fresh start to those in need</p><button class="donate-btn" id="donateButton">Donate with Cryptocurrency</button>
+   </header>
+   <main class="container">
+    <section class="mission">
+     <h2 id="missionTitle">Our Mission</h2>
+     <p id="missionText">We believe everyone deserves shelter, dignity, and hope. Your cryptocurrency donations directly support homeless individuals with emergency housing, meals, healthcare, and job training programs. Every USDT contribution makes an immediate impact.</p>
+    </section>
+    <section class="gallery">
+     <div class="gallery-item">
+      <svg viewbox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect fill="#e2e8f0" width="400" height="300" /> <circle cx="200" cy="120" r="50" fill="#cbd5e0" /> <circle cx="185" cy="110" r="8" fill="#4a5568" /> <circle cx="215" cy="110" r="8" fill="#4a5568" /> <path d="M 180 135 Q 200 145 220 135" stroke="#4a5568" stroke-width="3" fill="none" /> <rect x="150" y="170" width="100" height="80" fill="#718096" rx="5" /> <rect x="120" y="250" width="160" height="50" fill="#4a5568" /> <text x="200" y="285" text-anchor="middle" fill="white" font-size="14" font-weight="bold">
+        HELP NEEDED
+       </text>
+      </svg>
+      <div class="gallery-caption">
+       <h3>Emergency Shelter</h3>
+       <p>Providing safe, warm beds for those sleeping on the streets during harsh weather conditions.</p>
+      </div>
+     </div>
+     <div class="gallery-item">
+      <svg viewbox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect fill="#fef3c7" width="400" height="300" /> <circle cx="150" cy="100" r="35" fill="#f59e0b" /> <circle cx="140" cy="95" r="5" fill="#78350f" /> <circle cx="160" cy="95" r="5" fill="#78350f" /> <path d="M 135 110 Q 150 118 165 110" stroke="#78350f" stroke-width="2" fill="none" /> <rect x="120" y="135" width="60" height="70" fill="#fb923c" rx="3" /> <circle cx="250" cy="100" r="35" fill="#f59e0b" /> <circle cx="240" cy="95" r="5" fill="#78350f" /> <circle cx="260" cy="95" r="5" fill="#78350f" /> <path d="M 235 110 Q 250 118 265 110" stroke="#78350f" stroke-width="2" fill="none" /> <rect x="220" y="135" width="60" height="70" fill="#fb923c" rx="3" /> <rect x="170" y="240" width="60" height="40" fill="#f97316" rx="5" /> <text x="200" y="265" text-anchor="middle" fill="white" font-size="16" font-weight="bold">
+        MEALS
+       </text>
+      </svg>
+      <div class="gallery-caption">
+       <h3>Daily Meals</h3>
+       <p>Hot, nutritious meals served with compassion to hundreds of hungry families every single day.</p>
+      </div>
+     </div>
+     <div class="gallery-item">
+      <svg viewbox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect fill="#dbeafe" width="400" height="300" /> <rect x="100" y="80" width="200" height="150" fill="#93c5fd" rx="10" /> <rect x="120" y="100" width="70" height="60" fill="#60a5fa" /> <rect x="210" y="100" width="70" height="60" fill="#60a5fa" /> <rect x="150" y="180" width="100" height="40" fill="#3b82f6" rx="5" /> <circle cx="200" cy="50" r="20" fill="#fbbf24" /> <path d="M 180 45 L 175 35 M 200 30 L 200 20 M 220 45 L 225 35 M 190 38 L 185 28" stroke="#fbbf24" stroke-width="3" /> <text x="200" y="265" text-anchor="middle" fill="#1e40af" font-size="18" font-weight="bold">
+        NEW BEGINNING
+       </text>
+      </svg>
+      <div class="gallery-caption">
+       <h3>Housing Support</h3>
+       <p>Helping families transition from homelessness to permanent housing with rental assistance and support.</p>
+      </div>
+     </div>
+    </section>
+    <section class="impact">
+     <div class="stats">
+      <div class="stat-card">
+       <div class="stat-number">
+        2,450+
+       </div>
+       <div class="stat-label">
+        People Helped
+       </div>
+      </div>
+      <div class="stat-card">
+       <div class="stat-number">
+        15,000+
+       </div>
+       <div class="stat-label">
+        Meals Served
+       </div>
+      </div>
+      <div class="stat-card">
+       <div class="stat-number">
+        350+
+       </div>
+       <div class="stat-label">
+        Housed Families
+       </div>
+      </div>
+     </div>
+    </section>
+   </main>
+   <footer>
+    <p id="footerText">Every donation changes lives. Thank you for your compassion and generosity. 🙏</p>
+   </footer>
+  </div><!-- Payment Page -->
+  <div id="paymentPage" class="page">
+   <div class="payment-page">
+    <div class="payment-container"><button class="back-btn" id="backButton">← Back to Home</button>
+     <div class="payment-header">
+      <svg class="crypto-icon" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="45" fill="#26a17b" /> <text x="50" y="65" text-anchor="middle" fill="white" font-size="40" font-weight="bold" font-family="Arial">
+        ₮
+       </text>
+      </svg>
+      <h2>Donate with USDT</h2>
+      <p>Tether (USDT) - BEP20 Network (BSC)</p>
+     </div>
+     <div class="wallet-section">
+      <div class="wallet-label">
+       USDT Wallet Address (BEP20):
+      </div>
+      <div class="wallet-address" id="walletAddress">
+       0xe5b09275fa7c6921db5c4e4b36304046cd0c74f0
+      </div><button class="copy-btn" id="copyButton">Copy Wallet Address</button>
+     </div>
+     <div class="qr-section">
+      <div class="qr-code">
+       <svg width="200" height="200" viewbox="0 0 37 37" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><rect fill="white" width="37" height="37" /> <g fill="black">
+         <rect x="0" y="0" width="1" height="1" />
+         <rect x="1" y="0" width="1" height="1" />
+         <rect x="2" y="0" width="1" height="1" />
+         <rect x="3" y="0" width="1" height="1" />
+         <rect x="4" y="0" width="1" height="1" />
+         <rect x="5" y="0" width="1" height="1" />
+         <rect x="6" y="0" width="1" height="1" />
+         <rect x="12" y="0" width="1" height="1" />
+         <rect x="14" y="0" width="1" height="1" />
+         <rect x="16" y="0" width="1" height="1" />
+         <rect x="18" y="0" width="1" height="1" />
+         <rect x="19" y="0" width="1" height="1" />
+         <rect x="21" y="0" width="1" height="1" />
+         <rect x="22" y="0" width="1" height="1" />
+         <rect x="23" y="0" width="1" height="1" />
+         <rect x="24" y="0" width="1" height="1" />
+         <rect x="30" y="0" width="1" height="1" />
+         <rect x="31" y="0" width="1" height="1" />
+         <rect x="32" y="0" width="1" height="1" />
+         <rect x="33" y="0" width="1" height="1" />
+         <rect x="34" y="0" width="1" height="1" />
+         <rect x="35" y="0" width="1" height="1" />
+         <rect x="36" y="0" width="1" height="1" />
+         <rect x="0" y="1" width="1" height="1" />
+         <rect x="6" y="1" width="1" height="1" />
+         <rect x="12" y="1" width="1" height="1" />
+         <rect x="14" y="1" width="1" height="1" />
+         <rect x="16" y="1" width="1" height="1" />
+         <rect x="19" y="1" width="1" height="1" />
+         <rect x="23" y="1" width="1" height="1" />
+         <rect x="24" y="1" width="1" height="1" />
+         <rect x="30" y="1" width="1" height="1" />
+         <rect x="36" y="1" width="1" height="1" />
+         <rect x="0" y="2" width="1" height="1" />
+         <rect x="2" y="2" width="1" height="1" />
+         <rect x="3" y="2" width="1" height="1" />
+         <rect x="4" y="2" width="1" height="1" />
+         <rect x="6" y="2" width="1" height="1" />
+         <rect x="9" y="2" width="1" height="1" />
+         <rect x="12" y="2" width="1" height="1" />
+         <rect x="14" y="2" width="1" height="1" />
+         <rect x="17" y="2" width="1" height="1" />
+         <rect x="19" y="2" width="1" height="1" />
+         <rect x="21" y="2" width="1" height="1" />
+         <rect x="23" y="2" width="1" height="1" />
+         <rect x="30" y="2" width="1" height="1" />
+         <rect x="32" y="2" width="1" height="1" />
+         <rect x="33" y="2" width="1" height="1" />
+         <rect x="34" y="2" width="1" height="1" />
+         <rect x="36" y="2" width="1" height="1" />
+         <rect x="0" y="3" width="1" height="1" />
+         <rect x="2" y="3" width="1" height="1" />
+         <rect x="3" y="3" width="1" height="1" />
+         <rect x="4" y="3" width="1" height="1" />
+         <rect x="6" y="3" width="1" height="1" />
+         <rect x="8" y="3" width="1" height="1" />
+         <rect x="9" y="3" width="1" height="1" />
+         <rect x="10" y="3" width="1" height="1" />
+         <rect x="11" y="3" width="1" height="1" />
+         <rect x="13" y="3" width="1" height="1" />
+         <rect x="16" y="3" width="1" height="1" />
+         <rect x="18" y="3" width="1" height="1" />
+         <rect x="19" y="3" width="1" height="1" />
+         <rect x="20" y="3" width="1" height="1" />
+         <rect x="21" y="3" width="1" height="1" />
+         <rect x="23" y="3" width="1" height="1" />
+         <rect x="25" y="3" width="1" height="1" />
+         <rect x="26" y="3" width="1" height="1" />
+         <rect x="27" y="3" width="1" height="1" />
+         <rect x="30" y="3" width="1" height="1" />
+         <rect x="32" y="3" width="1" height="1" />
+         <rect x="33" y="3" width="1" height="1" />
+         <rect x="34" y="3" width="1" height="1" />
+         <rect x="36" y="3" width="1" height="1" />
+         <rect x="0" y="4" width="1" height="1" />
+         <rect x="2" y="4" width="1" height="1" />
+         <rect x="3" y="4" width="1" height="1" />
+         <rect x="4" y="4" width="1" height="1" />
+         <rect x="6" y="4" width="1" height="1" />
+         <rect x="8" y="4" width="1" height="1" />
+         <rect x="10" y="4" width="1" height="1" />
+         <rect x="12" y="4" width="1" height="1" />
+         <rect x="14" y="4" width="1" height="1" />
+         <rect x="15" y="4" width="1" height="1" />
+         <rect x="19" y="4" width="1" height="1" />
+         <rect x="21" y="4" width="1" height="1" />
+         <rect x="30" y="4" width="1" height="1" />
+         <rect x="32" y="4" width="1" height="1" />
+         <rect x="33" y="4" width="1" height="1" />
+         <rect x="34" y="4" width="1" height="1" />
+         <rect x="36" y="4" width="1" height="1" />
+         <rect x="0" y="5" width="1" height="1" />
+         <rect x="6" y="5" width="1" height="1" />
+         <rect x="8" y="5" width="1" height="1" />
+         <rect x="9" y="5" width="1" height="1" />
+         <rect x="10" y="5" width="1" height="1" />
+         <rect x="11" y="5" width="1" height="1" />
+         <rect x="12" y="5" width="1" height="1" />
+         <rect x="13" y="5" width="1" height="1" />
+         <rect x="16" y="5" width="1" height="1" />
+         <rect x="17" y="5" width="1" height="1" />
+         <rect x="19" y="5" width="1" height="1" />
+         <rect x="20" y="5" width="1" height="1" />
+         <rect x="21" y="5" width="1" height="1" />
+         <rect x="22" y="5" width="1" height="1" />
+         <rect x="24" y="5" width="1" height="1" />
+         <rect x="30" y="5" width="1" height="1" />
+         <rect x="36" y="5" width="1" height="1" />
+         <rect x="0" y="6" width="1" height="1" />
+         <rect x="1" y="6" width="1" height="1" />
+         <rect x="2" y="6" width="1" height="1" />
+         <rect x="3" y="6" width="1" height="1" />
+         <rect x="4" y="6" width="1" height="1" />
+         <rect x="5" y="6" width="1" height="1" />
+         <rect x="6" y="6" width="1" height="1" />
+         <rect x="8" y="6" width="1" height="1" />
+         <rect x="10" y="6" width="1" height="1" />
+         <rect x="12" y="6" width="1" height="1" />
+         <rect x="14" y="6" width="1" height="1" />
+         <rect x="16" y="6" width="1" height="1" />
+         <rect x="18" y="6" width="1" height="1" />
+         <rect x="20" y="6" width="1" height="1" />
+         <rect x="22" y="6" width="1" height="1" />
+         <rect x="24" y="6" width="1" height="1" />
+         <rect x="26" y="6" width="1" height="1" />
+         <rect x="28" y="6" width="1" height="1" />
+         <rect x="30" y="6" width="1" height="1" />
+         <rect x="31" y="6" width="1" height="1" />
+         <rect x="32" y="6" width="1" height="1" />
+         <rect x="33" y="6" width="1" height="1" />
+         <rect x="34" y="6" width="1" height="1" />
+         <rect x="35" y="6" width="1" height="1" />
+         <rect x="36" y="6" width="1" height="1" />
+         <rect x="8" y="7" width="1" height="1" />
+         <rect x="10" y="7" width="1" height="1" />
+         <rect x="12" y="7" width="1" height="1" />
+         <rect x="16" y="7" width="1" height="1" />
+         <rect x="17" y="7" width="1" height="1" />
+         <rect x="18" y="7" width="1" height="1" />
+         <rect x="19" y="7" width="1" height="1" />
+         <rect x="20" y="7" width="1" height="1" />
+         <rect x="21" y="7" width="1" height="1" />
+         <rect x="23" y="7" width="1" height="1" />
+         <rect x="27" y="7" width="1" height="1" />
+         <rect x="2" y="8" width="1" height="1" />
+         <rect x="3" y="8" width="1" height="1" />
+         <rect x="4" y="8" width="1" height="1" />
+         <rect x="6" y="8" width="1" height="1" />
+         <rect x="7" y="8" width="1" height="1" />
+         <rect x="8" y="8" width="1" height="1" />
+         <rect x="11" y="8" width="1" height="1" />
+         <rect x="12" y="8" width="1" height="1" />
+         <rect x="13" y="8" width="1" height="1" />
+         <rect x="14" y="8" width="1" height="1" />
+         <rect x="17" y="8" width="1" height="1" />
+         <rect x="19" y="8" width="1" height="1" />
+         <rect x="22" y="8" width="1" height="1" />
+         <rect x="24" y="8" width="1" height="1" />
+         <rect x="26" y="8" width="1" height="1" />
+         <rect x="27" y="8" width="1" height="1" />
+         <rect x="28" y="8" width="1" height="1" />
+         <rect x="0" y="9" width="1" height="1" />
+         <rect x="1" y="9" width="1" height="1" />
+         <rect x="4" y="9" width="1" height="1" />
+         <rect x="5" y="9" width="1" height="1" />
+         <rect x="7" y="9" width="1" height="1" />
+         <rect x="8" y="9" width="1" height="1" />
+         <rect x="9" y="9" width="1" height="1" />
+         <rect x="10" y="9" width="1" height="1" />
+         <rect x="11" y="9" width="1" height="1" />
+         <rect x="14" y="9" width="1" height="1" />
+         <rect x="15" y="9" width="1" height="1" />
+         <rect x="16" y="9" width="1" height="1" />
+         <rect x="17" y="9" width="1" height="1" />
+         <rect x="18" y="9" width="1" height="1" />
+         <rect x="19" y="9" width="1" height="1" />
+         <rect x="22" y="9" width="1" height="1" />
+         <rect x="23" y="9" width="1" height="1" />
+         <rect x="24" y="9" width="1" height="1" />
+         <rect x="26" y="9" width="1" height="1" />
+         <rect x="30" y="9" width="1" height="1" />
+         <rect x="33" y="9" width="1" height="1" />
+         <rect x="34" y="9" width="1" height="1" />
+         <rect x="35" y="9" width="1" height="1" />
+         <rect x="3" y="10" width="1" height="1" />
+         <rect x="8" y="10" width="1" height="1" />
+         <rect x="9" y="10" width="1" height="1" />
+         <rect x="10" y="10" width="1" height="1" />
+         <rect x="11" y="10" width="1" height="1" />
+         <rect x="12" y="10" width="1" height="1" />
+         <rect x="13" y="10" width="1" height="1" />
+         <rect x="15" y="10" width="1" height="1" />
+         <rect x="17" y="10" width="1" height="1" />
+         <rect x="18" y="10" width="1" height="1" />
+         <rect x="20" y="10" width="1" height="1" />
+         <rect x="21" y="10" width="1" height="1" />
+         <rect x="23" y="10" width="1" height="1" />
+         <rect x="26" y="10" width="1" height="1" />
+         <rect x="28" y="10" width="1" height="1" />
+         <rect x="29" y="10" width="1" height="1" />
+         <rect x="30" y="10" width="1" height="1" />
+         <rect x="33" y="10" width="1" height="1" />
+         <rect x="0" y="11" width="1" height="1" />
+         <rect x="1" y="11" width="1" height="1" />
+         <rect x="2" y="11" width="1" height="1" />
+         <rect x="3" y="11" width="1" height="1" />
+         <rect x="5" y="11" width="1" height="1" />
+         <rect x="6" y="11" width="1" height="1" />
+         <rect x="9" y="11" width="1" height="1" />
+         <rect x="10" y="11" width="1" height="1" />
+         <rect x="11" y="11" width="1" height="1" />
+         <rect x="13" y="11" width="1" height="1" />
+         <rect x="15" y="11" width="1" height="1" />
+         <rect x="16" y="11" width="1" height="1" />
+         <rect x="21" y="11" width="1" height="1" />
+         <rect x="24" y="11" width="1" height="1" />
+         <rect x="26" y="11" width="1" height="1" />
+         <rect x="27" y="11" width="1" height="1" />
+         <rect x="29" y="11" width="1" height="1" />
+         <rect x="30" y="11" width="1" height="1" />
+         <rect x="31" y="11" width="1" height="1" />
+         <rect x="32" y="11" width="1" height="1" />
+         <rect x="1" y="12" width="1" height="1" />
+         <rect x="2" y="12" width="1" height="1" />
+         <rect x="4" y="12" width="1" height="1" />
+         <rect x="7" y="12" width="1" height="1" />
+         <rect x="9" y="12" width="1" height="1" />
+         <rect x="11" y="12" width="1" height="1" />
+         <rect x="13" y="12" width="1" height="1" />
+         <rect x="14" y="12" width="1" height="1" />
+         <rect x="18" y="12" width="1" height="1" />
+         <rect x="19" y="12" width="1" height="1" />
+         <rect x="21" y="12" width="1" height="1" />
+         <rect x="24" y="12" width="1" height="1" />
+         <rect x="25" y="12" width="1" height="1" />
+         <rect x="26" y="12" width="1" height="1" />
+         <rect x="28" y="12" width="1" height="1" />
+         <rect x="29" y="12" width="1" height="1" />
+         <rect x="32" y="12" width="1" height="1" />
+         <rect x="33" y="12" width="1" height="1" />
+         <rect x="34" y="12" width="1" height="1" />
+         <rect x="35" y="12" width="1" height="1" />
+         <rect x="0" y="13" width="1" height="1" />
+         <rect x="1" y="13" width="1" height="1" />
+         <rect x="6" y="13" width="1" height="1" />
+         <rect x="7" y="13" width="1" height="1" />
+         <rect x="8" y="13" width="1" height="1" />
+         <rect x="9" y="13" width="1" height="1" />
+         <rect x="10" y="13" width="1" height="1" />
+         <rect x="13" y="13" width="1" height="1" />
+         <rect x="14" y="13" width="1" height="1" />
+         <rect x="15" y="13" width="1" height="1" />
+         <rect x="16" y="13" width="1" height="1" />
+         <rect x="19" y="13" width="1" height="1" />
+         <rect x="20" y="13" width="1" height="1" />
+         <rect x="23" y="13" width="1" height="1" />
+         <rect x="24" y="13" width="1" height="1" />
+         <rect x="26" y="13" width="1" height="1" />
+         <rect x="28" y="13" width="1" height="1" />
+         <rect x="29" y="13" width="1" height="1" />
+         <rect x="30" y="13" width="1" height="1" />
+         <rect x="32" y="13" width="1" height="1" />
+         <rect x="34" y="13" width="1" height="1" />
+         <rect x="35" y="13" width="1" height="1" />
+         <rect x="1" y="14" width="1" height="1" />
+         <rect x="3" y="14" width="1" height="1" />
+         <rect x="7" y="14" width="1" height="1" />
+         <rect x="8" y="14" width="1" height="1" />
+         <rect x="9" y="14" width="1" height="1" />
+         <rect x="13" y="14" width="1" height="1" />
+         <rect x="15" y="14" width="1" height="1" />
+         <rect x="18" y="14" width="1" height="1" />
+         <rect x="20" y="14" width="1" height="1" />
+         <rect x="23" y="14" width="1" height="1" />
+         <rect x="24" y="14" width="1" height="1" />
+         <rect x="25" y="14" width="1" height="1" />
+         <rect x="26" y="14" width="1" height="1" />
+         <rect x="29" y="14" width="1" height="1" />
+         <rect x="30" y="14" width="1" height="1" />
+         <rect x="31" y="14" width="1" height="1" />
+         <rect x="32" y="14" width="1" height="1" />
+         <rect x="35" y="14" width="1" height="1" />
+         <rect x="1" y="15" width="1" height="1" />
+         <rect x="2" y="15" width="1" height="1" />
+         <rect x="4" y="15" width="1" height="1" />
+         <rect x="6" y="15" width="1" height="1" />
+         <rect x="7" y="15" width="1" height="1" />
+         <rect x="10" y="15" width="1" height="1" />
+         <rect x="13" y="15" width="1" height="1" />
+         <rect x="15" y="15" width="1" height="1" />
+         <rect x="16" y="15" width="1" height="1" />
+         <rect x="19" y="15" width="1" height="1" />
+         <rect x="20" y="15" width="1" height="1" />
+         <rect x="22" y="15" width="1" height="1" />
+         <rect x="24" y="15" width="1" height="1" />
+         <rect x="28" y="15" width="1" height="1" />
+         <rect x="29" y="15" width="1" height="1" />
+         <rect x="32" y="15" width="1" height="1" />
+         <rect x="2" y="16" width="1" height="1" />
+         <rect x="4" y="16" width="1" height="1" />
+         <rect x="5" y="16" width="1" height="1" />
+         <rect x="6" y="16" width="1" height="1" />
+         <rect x="8" y="16" width="1" height="1" />
+         <rect x="10" y="16" width="1" height="1" />
+         <rect x="11" y="16" width="1" height="1" />
+         <rect x="12" y="16" width="1" height="1" />
+         <rect x="14" y="16" width="1" height="1" />
+         <rect x="15" y="16" width="1" height="1" />
+         <rect x="19" y="16" width="1" height="1" />
+         <rect x="22" y="16" width="1" height="1" />
+         <rect x="25" y="16" width="1" height="1" />
+         <rect x="26" y="16" width="1" height="1" />
+         <rect x="29" y="16" width="1" height="1" />
+         <rect x="30" y="16" width="1" height="1" />
+         <rect x="32" y="16" width="1" height="1" />
+         <rect x="33" y="16" width="1" height="1" />
+         <rect x="34" y="16" width="1" height="1" />
+         <rect x="35" y="16" width="1" height="1" />
+         <rect x="36" y="16" width="1" height="1" />
+         <rect x="1" y="17" width="1" height="1" />
+         <rect x="2" y="17" width="1" height="1" />
+         <rect x="3" y="17" width="1" height="1" />
+         <rect x="6" y="17" width="1" height="1" />
+         <rect x="10" y="17" width="1" height="1" />
+         <rect x="12" y="17" width="1" height="1" />
+         <rect x="14" y="17" width="1" height="1" />
+         <rect x="19" y="17" width="1" height="1" />
+         <rect x="21" y="17" width="1" height="1" />
+         <rect x="24" y="17" width="1" height="1" />
+         <rect x="27" y="17" width="1" height="1" />
+         <rect x="28" y="17" width="1" height="1" />
+         <rect x="30" y="17" width="1" height="1" />
+         <rect x="32" y="17" width="1" height="1" />
+         <rect x="33" y="17" width="1" height="1" />
+         <rect x="34" y="17" width="1" height="1" />
+         <rect x="36" y="17" width="1" height="1" />
+         <rect x="3" y="18" width="1" height="1" />
+         <rect x="4" y="18" width="1" height="1" />
+         <rect x="5" y="18" width="1" height="1" />
+         <rect x="6" y="18" width="1" height="1" />
+         <rect x="9" y="18" width="1" height="1" />
+         <rect x="12" y="18" width="1" height="1" />
+         <rect x="15" y="18" width="1" height="1" />
+         <rect x="17" y="18" width="1" height="1" />
+         <rect x="20" y="18" width="1" height="1" />
+         <rect x="23" y="18" width="1" height="1" />
+         <rect x="24" y="18" width="1" height="1" />
+         <rect x="25" y="18" width="1" height="1" />
+         <rect x="26" y="18" width="1" height="1" />
+         <rect x="28" y="18" width="1" height="1" />
+         <rect x="29" y="18" width="1" height="1" />
+         <rect x="30" y="18" width="1" height="1" />
+         <rect x="31" y="18" width="1" height="1" />
+         <rect x="32" y="18" width="1" height="1" />
+         <rect x="33" y="18" width="1" height="1" />
+         <rect x="0" y="19" width="1" height="1" />
+         <rect x="1" y="19" width="1" height="1" />
+         <rect x="3" y="19" width="1" height="1" />
+         <rect x="4" y="19" width="1" height="1" />
+         <rect x="5" y="19" width="1" height="1" />
+         <rect x="9" y="19" width="1" height="1" />
+         <rect x="10" y="19" width="1" height="1" />
+         <rect x="11" y="19" width="1" height="1" />
+         <rect x="13" y="19" width="1" height="1" />
+         <rect x="14" y="19" width="1" height="1" />
+         <rect x="15" y="19" width="1" height="1" />
+         <rect x="16" y="19" width="1" height="1" />
+         <rect x="18" y="19" width="1" height="1" />
+         <rect x="20" y="19" width="1" height="1" />
+         <rect x="22" y="19" width="1" height="1" />
+         <rect x="24" y="19" width="1" height="1" />
+         <rect x="26" y="19" width="1" height="1" />
+         <rect x="29" y="19" width="1" height="1" />
+         <rect x="31" y="19" width="1" height="1" />
+         <rect x="33" y="19" width="1" height="1" />
+         <rect x="34" y="19" width="1" height="1" />
+         <rect x="0" y="20" width="1" height="1" />
+         <rect x="4" y="20" width="1" height="1" />
+         <rect x="6" y="20" width="1" height="1" />
+         <rect x="9" y="20" width="1" height="1" />
+         <rect x="11" y="20" width="1" height="1" />
+         <rect x="12" y="20" width="1" height="1" />
+         <rect x="14" y="20" width="1" height="1" />
+         <rect x="16" y="20" width="1" height="1" />
+         <rect x="18" y="20" width="1" height="1" />
+         <rect x="20" y="20" width="1" height="1" />
+         <rect x="21" y="20" width="1" height="1" />
+         <rect x="23" y="20" width="1" height="1" />
+         <rect x="26" y="20" width="1" height="1" />
+         <rect x="27" y="20" width="1" height="1" />
+         <rect x="28" y="20" width="1" height="1" />
+         <rect x="30" y="20" width="1" height="1" />
+         <rect x="32" y="20" width="1" height="1" />
+         <rect x="33" y="20" width="1" height="1" />
+         <rect x="0" y="21" width="1" height="1" />
+         <rect x="3" y="21" width="1" height="1" />
+         <rect x="4" y="21" width="1" height="1" />
+         <rect x="5" y="21" width="1" height="1" />
+         <rect x="6" y="21" width="1" height="1" />
+         <rect x="8" y="21" width="1" height="1" />
+         <rect x="11" y="21" width="1" height="1" />
+         <rect x="13" y="21" width="1" height="1" />
+         <rect x="15" y="21" width="1" height="1" />
+         <rect x="17" y="21" width="1" height="1" />
+         <rect x="18" y="21" width="1" height="1" />
+         <rect x="19" y="21" width="1" height="1" />
+         <rect x="20" y="21" width="1" height="1" />
+         <rect x="23" y="21" width="1" height="1" />
+         <rect x="25" y="21" width="1" height="1" />
+         <rect x="28" y="21" width="1" height="1" />
+         <rect x="29" y="21" width="1" height="1" />
+         <rect x="30" y="21" width="1" height="1" />
+         <rect x="33" y="21" width="1" height="1" />
+         <rect x="35" y="21" width="1" height="1" />
+         <rect x="36" y="21" width="1" height="1" />
+         <rect x="1" y="22" width="1" height="1" />
+         <rect x="2" y="22" width="1" height="1" />
+         <rect x="3" y="22" width="1" height="1" />
+         <rect x="6" y="22" width="1" height="1" />
+         <rect x="7" y="22" width="1" height="1" />
+         <rect x="8" y="22" width="1" height="1" />
+         <rect x="9" y="22" width="1" height="1" />
+         <rect x="10" y="22" width="1" height="1" />
+         <rect x="12" y="22" width="1" height="1" />
+         <rect x="14" y="22" width="1" height="1" />
+         <rect x="15" y="22" width="1" height="1" />
+         <rect x="16" y="22" width="1" height="1" />
+         <rect x="17" y="22" width="1" height="1" />
+         <rect x="18" y="22" width="1" height="1" />
+         <rect x="21" y="22" width="1" height="1" />
+         <rect x="26" y="22" width="1" height="1" />
+         <rect x="27" y="22" width="1" height="1" />
+         <rect x="29" y="22" width="1" height="1" />
+         <rect x="31" y="22" width="1" height="1" />
+         <rect x="35" y="22" width="1" height="1" />
+         <rect x="36" y="22" width="1" height="1" />
+         <rect x="0" y="23" width="1" height="1" />
+         <rect x="1" y="23" width="1" height="1" />
+         <rect x="4" y="23" width="1" height="1" />
+         <rect x="5" y="23" width="1" height="1" />
+         <rect x="8" y="23" width="1" height="1" />
+         <rect x="12" y="23" width="1" height="1" />
+         <rect x="13" y="23" width="1" height="1" />
+         <rect x="15" y="23" width="1" height="1" />
+         <rect x="16" y="23" width="1" height="1" />
+         <rect x="17" y="23" width="1" height="1" />
+         <rect x="19" y="23" width="1" height="1" />
+         <rect x="20" y="23" width="1" height="1" />
+         <rect x="21" y="23" width="1" height="1" />
+         <rect x="22" y="23" width="1" height="1" />
+         <rect x="24" y="23" width="1" height="1" />
+         <rect x="26" y="23" width="1" height="1" />
+         <rect x="31" y="23" width="1" height="1" />
+         <rect x="32" y="23" width="1" height="1" />
+         <rect x="33" y="23" width="1" height="1" />
+         <rect x="35" y="23" width="1" height="1" />
+         <rect x="0" y="24" width="1" height="1" />
+         <rect x="1" y="24" width="1" height="1" />
+         <rect x="2" y="24" width="1" height="1" />
+         <rect x="4" y="24" width="1" height="1" />
+         <rect x="6" y="24" width="1" height="1" />
+         <rect x="8" y="24" width="1" height="1" />
+         <rect x="9" y="24" width="1" height="1" />
+         <rect x="10" y="24" width="1" height="1" />
+         <rect x="12" y="24" width="1" height="1" />
+         <rect x="13" y="24" width="1" height="1" />
+         <rect x="14" y="24" width="1" height="1" />
+         <rect x="16" y="24" width="1" height="1" />
+         <rect x="17" y="24" width="1" height="1" />
+         <rect x="19" y="24" width="1" height="1" />
+         <rect x="20" y="24" width="1" height="1" />
+         <rect x="22" y="24" width="1" height="1" />
+         <rect x="24" y="24" width="1" height="1" />
+         <rect x="25" y="24" width="1" height="1" />
+         <rect x="27" y="24" width="1" height="1" />
+         <rect x="28" y="24" width="1" height="1" />
+         <rect x="29" y="24" width="1" height="1" />
+         <rect x="30" y="24" width="1" height="1" />
+         <rect x="31" y="24" width="1" height="1" />
+         <rect x="34" y="24" width="1" height="1" />
+         <rect x="35" y="24" width="1" height="1" />
+         <rect x="0" y="25" width="1" height="1" />
+         <rect x="3" y="25" width="1" height="1" />
+         <rect x="4" y="25" width="1" height="1" />
+         <rect x="5" y="25" width="1" height="1" />
+         <rect x="9" y="25" width="1" height="1" />
+         <rect x="11" y="25" width="1" height="1" />
+         <rect x="14" y="25" width="1" height="1" />
+         <rect x="15" y="25" width="1" height="1" />
+         <rect x="17" y="25" width="1" height="1" />
+         <rect x="18" y="25" width="1" height="1" />
+         <rect x="19" y="25" width="1" height="1" />
+         <rect x="22" y="25" width="1" height="1" />
+         <rect x="23" y="25" width="1" height="1" />
+         <rect x="25" y="25" width="1" height="1" />
+         <rect x="27" y="25" width="1" height="1" />
+         <rect x="28" y="25" width="1" height="1" />
+         <rect x="30" y="25" width="1" height="1" />
+         <rect x="31" y="25" width="1" height="1" />
+         <rect x="32" y="25" width="1" height="1" />
+         <rect x="35" y="25" width="1" height="1" />
+         <rect x="3" y="26" width="1" height="1" />
+         <rect x="4" y="26" width="1" height="1" />
+         <rect x="5" y="26" width="1" height="1" />
+         <rect x="7" y="26" width="1" height="1" />
+         <rect x="8" y="26" width="1" height="1" />
+         <rect x="9" y="26" width="1" height="1" />
+         <rect x="11" y="26" width="1" height="1" />
+         <rect x="12" y="26" width="1" height="1" />
+         <rect x="13" y="26" width="1" height="1" />
+         <rect x="17" y="26" width="1" height="1" />
+         <rect x="19" y="26" width="1" height="1" />
+         <rect x="22" y="26" width="1" height="1" />
+         <rect x="25" y="26" width="1" height="1" />
+         <rect x="27" y="26" width="1" height="1" />
+         <rect x="28" y="26" width="1" height="1" />
+         <rect x="29" y="26" width="1" height="1" />
+         <rect x="30" y="26" width="1" height="1" />
+         <rect x="31" y="26" width="1" height="1" />
+         <rect x="32" y="26" width="1" height="1" />
+         <rect x="33" y="26" width="1" height="1" />
+         <rect x="34" y="26" width="1" height="1" />
+         <rect x="35" y="26" width="1" height="1" />
+         <rect x="1" y="27" width="1" height="1" />
+         <rect x="2" y="27" width="1" height="1" />
+         <rect x="5" y="27" width="1" height="1" />
+         <rect x="8" y="27" width="1" height="1" />
+         <rect x="10" y="27" width="1" height="1" />
+         <rect x="11" y="27" width="1" height="1" />
+         <rect x="13" y="27" width="1" height="1" />
+         <rect x="15" y="27" width="1" height="1" />
+         <rect x="16" y="27" width="1" height="1" />
+         <rect x="17" y="27" width="1" height="1" />
+         <rect x="18" y="27" width="1" height="1" />
+         <rect x="19" y="27" width="1" height="1" />
+         <rect x="20" y="27" width="1" height="1" />
+         <rect x="23" y="27" width="1" height="1" />
+         <rect x="27" y="27" width="1" height="1" />
+         <rect x="29" y="27" width="1" height="1" />
+         <rect x="30" y="27" width="1" height="1" />
+         <rect x="33" y="27" width="1" height="1" />
+         <rect x="35" y="27" width="1" height="1" />
+         <rect x="8" y="28" width="1" height="1" />
+         <rect x="11" y="28" width="1" height="1" />
+         <rect x="13" y="28" width="1" height="1" />
+         <rect x="16" y="28" width="1" height="1" />
+         <rect x="17" y="28" width="1" height="1" />
+         <rect x="19" y="28" width="1" height="1" />
+         <rect x="22" y="28" width="1" height="1" />
+         <rect x="23" y="28" width="1" height="1" />
+         <rect x="28" y="28" width="1" height="1" />
+         <rect x="29" y="28" width="1" height="1" />
+         <rect x="30" y="28" width="1" height="1" />
+         <rect x="31" y="28" width="1" height="1" />
+         <rect x="32" y="28" width="1" height="1" />
+         <rect x="35" y="28" width="1" height="1" />
+         <rect x="0" y="29" width="1" height="1" />
+         <rect x="1" y="29" width="1" height="1" />
+         <rect x="2" y="29" width="1" height="1" />
+         <rect x="3" y="29" width="1" height="1" />
+         <rect x="4" y="29" width="1" height="1" />
+         <rect x="5" y="29" width="1" height="1" />
+         <rect x="6" y="29" width="1" height="1" />
+         <rect x="9" y="29" width="1" height="1" />
+         <rect x="11" y="29" width="1" height="1" />
+         <rect x="13" y="29" width="1" height="1" />
+         <rect x="14" y="29" width="1" height="1" />
+         <rect x="15" y="29" width="1" height="1" />
+         <rect x="16" y="29" width="1" height="1" />
+         <rect x="17" y="29" width="1" height="1" />
+         <rect x="18" y="29" width="1" height="1" />
+         <rect x="19" y="29" width="1" height="1" />
+         <rect x="21" y="29" width="1" height="1" />
+         <rect x="22" y="29" width="1" height="1" />
+         <rect x="24" y="29" width="1" height="1" />
+         <rect x="25" y="29" width="1" height="1" />
+         <rect x="28" y="29" width="1" height="1" />
+         <rect x="29" y="29" width="1" height="1" />
+         <rect x="30" y="29" width="1" height="1" />
+         <rect x="33" y="29" width="1" height="1" />
+         <rect x="35" y="29" width="1" height="1" />
+         <rect x="0" y="30" width="1" height="1" />
+         <rect x="6" y="30" width="1" height="1" />
+         <rect x="8" y="30" width="1" height="1" />
+         <rect x="9" y="30" width="1" height="1" />
+         <rect x="11" y="30" width="1" height="1" />
+         <rect x="12" y="30" width="1" height="1" />
+         <rect x="14" y="30" width="1" height="1" />
+         <rect x="16" y="30" width="1" height="1" />
+         <rect x="17" y="30" width="1" height="1" />
+         <rect x="20" y="30" width="1" height="1" />
+         <rect x="21" y="30" width="1" height="1" />
+         <rect x="23" y="30" width="1" height="1" />
+         <rect x="25" y="30" width="1" height="1" />
+         <rect x="26" y="30" width="1" height="1" />
+         <rect x="27" y="30" width="1" height="1" />
+         <rect x="29" y="30" width="1" height="1" />
+         <rect x="32" y="30" width="1" height="1" />
+         <rect x="33" y="30" width="1" height="1" />
+         <rect x="0" y="31" width="1" height="1" />
+         <rect x="2" y="31" width="1" height="1" />
+         <rect x="3" y="31" width="1" height="1" />
+         <rect x="4" y="31" width="1" height="1" />
+         <rect x="6" y="31" width="1" height="1" />
+         <rect x="8" y="31" width="1" height="1" />
+         <rect x="13" y="31" width="1" height="1" />
+         <rect x="14" y="31" width="1" height="1" />
+         <rect x="15" y="31" width="1" height="1" />
+         <rect x="16" y="31" width="1" height="1" />
+         <rect x="17" y="31" width="1" height="1" />
+         <rect x="21" y="31" width="1" height="1" />
+         <rect x="23" y="31" width="1" height="1" />
+         <rect x="24" y="31" width="1" height="1" />
+         <rect x="26" y="31" width="1" height="1" />
+         <rect x="27" y="31" width="1" height="1" />
+         <rect x="29" y="31" width="1" height="1" />
+         <rect x="30" y="31" width="1" height="1" />
+         <rect x="31" y="31" width="1" height="1" />
+         <rect x="32" y="31" width="1" height="1" />
+         <rect x="33" y="31" width="1" height="1" />
+         <rect x="34" y="31" width="1" height="1" />
+         <rect x="36" y="31" width="1" height="1" />
+         <rect x="0" y="32" width="1" height="1" />
+         <rect x="2" y="32" width="1" height="1" />
+         <rect x="3" y="32" width="1" height="1" />
+         <rect x="4" y="32" width="1" height="1" />
+         <rect x="6" y="32" width="1" height="1" />
+         <rect x="8" y="32" width="1" height="1" />
+         <rect x="9" y="32" width="1" height="1" />
+         <rect x="12" y="32" width="1" height="1" />
+         <rect x="13" y="32" width="1" height="1" />
+         <rect x="17" y="32" width="1" height="1" />
+         <rect x="18" y="32" width="1" height="1" />
+         <rect x="19" y="32" width="1" height="1" />
+         <rect x="24" y="32" width="1" height="1" />
+         <rect x="25" y="32" width="1" height="1" />
+         <rect x="26" y="32" width="1" height="1" />
+         <rect x="31" y="32" width="1" height="1" />
+         <rect x="32" y="32" width="1" height="1" />
+         <rect x="0" y="33" width="1" height="1" />
+         <rect x="2" y="33" width="1" height="1" />
+         <rect x="3" y="33" width="1" height="1" />
+         <rect x="4" y="33" width="1" height="1" />
+         <rect x="6" y="33" width="1" height="1" />
+         <rect x="10" y="33" width="1" height="1" />
+         <rect x="12" y="33" width="1" height="1" />
+         <rect x="13" y="33" width="1" height="1" />
+         <rect x="14" y="33" width="1" height="1" />
+         <rect x="15" y="33" width="1" height="1" />
+         <rect x="17" y="33" width="1" height="1" />
+         <rect x="18" y="33" width="1" height="1" />
+         <rect x="19" y="33" width="1" height="1" />
+         <rect x="20" y="33" width="1" height="1" />
+         <rect x="21" y="33" width="1" height="1" />
+         <rect x="24" y="33" width="1" height="1" />
+         <rect x="27" y="33" width="1" height="1" />
+         <rect x="28" y="33" width="1" height="1" />
+         <rect x="29" y="33" width="1" height="1" />
+         <rect x="32" y="33" width="1" height="1" />
+         <rect x="33" y="33" width="1" height="1" />
+         <rect x="0" y="34" width="1" height="1" />
+         <rect x="6" y="34" width="1" height="1" />
+         <rect x="8" y="34" width="1" height="1" />
+         <rect x="9" y="34" width="1" height="1" />
+         <rect x="11" y="34" width="1" height="1" />
+         <rect x="12" y="34" width="1" height="1" />
+         <rect x="13" y="34" width="1" height="1" />
+         <rect x="14" y="34" width="1" height="1" />
+         <rect x="15" y="34" width="1" height="1" />
+         <rect x="16" y="34" width="1" height="1" />
+         <rect x="20" y="34" width="1" height="1" />
+         <rect x="21" y="34" width="1" height="1" />
+         <rect x="22" y="34" width="1" height="1" />
+         <rect x="23" y="34" width="1" height="1" />
+         <rect x="24" y="34" width="1" height="1" />
+         <rect x="25" y="34" width="1" height="1" />
+         <rect x="26" y="34" width="1" height="1" />
+         <rect x="27" y="34" width="1" height="1" />
+         <rect x="29" y="34" width="1" height="1" />
+         <rect x="30" y="34" width="1" height="1" />
+         <rect x="32" y="34" width="1" height="1" />
+         <rect x="33" y="34" width="1" height="1" />
+         <rect x="35" y="34" width="1" height="1" />
+         <rect x="0" y="35" width="1" height="1" />
+         <rect x="1" y="35" width="1" height="1" />
+         <rect x="2" y="35" width="1" height="1" />
+         <rect x="3" y="35" width="1" height="1" />
+         <rect x="4" y="35" width="1" height="1" />
+         <rect x="5" y="35" width="1" height="1" />
+         <rect x="6" y="35" width="1" height="1" />
+         <rect x="8" y="35" width="1" height="1" />
+         <rect x="9" y="35" width="1" height="1" />
+         <rect x="11" y="35" width="1" height="1" />
+         <rect x="13" y="35" width="1" height="1" />
+         <rect x="15" y="35" width="1" height="1" />
+         <rect x="19" y="35" width="1" height="1" />
+         <rect x="21" y="35" width="1" height="1" />
+         <rect x="22" y="35" width="1" height="1" />
+         <rect x="23" y="35" width="1" height="1" />
+         <rect x="24" y="35" width="1" height="1" />
+         <rect x="30" y="35" width="1" height="1" />
+         <rect x="0" y="36" width="1" height="1" />
+         <rect x="2" y="36" width="1" height="1" />
+         <rect x="4" y="36" width="1" height="1" />
+         <rect x="6" y="36" width="1" height="1" />
+         <rect x="9" y="36" width="1" height="1" />
+         <rect x="11" y="36" width="1" height="1" />
+         <rect x="12" y="36" width="1" height="1" />
+         <rect x="14" y="36" width="1" height="1" />
+         <rect x="16" y="36" width="1" height="1" />
+         <rect x="17" y="36" width="1" height="1" />
+         <rect x="19" y="36" width="1" height="1" />
+         <rect x="22" y="36" width="1" height="1" />
+         <rect x="24" y="36" width="1" height="1" />
+         <rect x="25" y="36" width="1" height="1" />
+         <rect x="26" y="36" width="1" height="1" />
+         <rect x="27" y="36" width="1" height="1" />
+         <rect x="31" y="36" width="1" height="1" />
+         <rect x="33" y="36" width="1" height="1" />
+         <rect x="35" y="36" width="1" height="1" />
+        </g>
+       </svg>
+      </div>
+      <p style="margin-top: 15px; color: #718096; font-size: 0.95em;">Scan this QR code with your crypto wallet</p>
+     </div>
+     <div class="instructions">
+      <h3>📱 How to Donate:</h3>
+      <ol>
+       <li>Copy the wallet address above or scan the QR code</li>
+       <li>Open your cryptocurrency wallet (Trust Wallet, Binance, MetaMask, etc.)</li>
+       <li>Select USDT and make sure you're on the <strong>BEP20 network (Binance Smart Chain)</strong></li>
+       <li>Paste the wallet address and enter your donation amount</li>
+       <li>Confirm the transaction</li>
+      </ol>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      main_title: "Together We Can End Homelessness",
+      subtitle: "Your donation brings hope, warmth, and a fresh start to those in need",
+      mission_title: "Our Mission",
+      mission_text: "We believe everyone deserves shelter, dignity, and hope. Your cryptocurrency donations directly support homeless individuals with emergency housing, meals, healthcare, and job training programs. Every USDT contribution makes an immediate impact.",
+      cta_button: "Donate with Cryptocurrency",
+      footer_text: "Every donation changes lives. Thank you for your compassion and generosity. 🙏",
+      background_color: "#667eea",
+      secondary_surface: "#f7fafc",
+      text_color: "#2d3748",
+      primary_action: "#667eea",
+      secondary_action: "#48bb78",
+      font_family: "system-ui",
+      font_size: 16
+    };
+
+    async function onConfigChange(config) {
+      const mainTitle = config.main_title || defaultConfig.main_title;
+      const subtitle = config.subtitle || defaultConfig.subtitle;
+      const missionTitle = config.mission_title || defaultConfig.mission_title;
+      const missionText = config.mission_text || defaultConfig.mission_text;
+      const ctaButton = config.cta_button || defaultConfig.cta_button;
+      const footerText = config.footer_text || defaultConfig.footer_text;
+
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const secondarySurface = config.secondary_surface || defaultConfig.secondary_surface;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryAction = config.primary_action || defaultConfig.primary_action;
+      const secondaryAction = config.secondary_action || defaultConfig.secondary_action;
+
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const fontSize = config.font_size || defaultConfig.font_size;
+
+      // Update text content
+      document.getElementById('mainTitle').textContent = mainTitle;
+      document.getElementById('subtitle').textContent = subtitle;
+      document.getElementById('missionTitle').textContent = missionTitle;
+      document.getElementById('missionText').textContent = missionText;
+      document.getElementById('donateButton').textContent = ctaButton;
+      document.getElementById('footerText').textContent = footerText;
+
+      // Update colors
+      const heroElements = document.querySelectorAll('.hero');
+      heroElements.forEach(el => {
+        el.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${primaryAction} 100%)`;
+      });
+
+      const paymentPageElements = document.querySelectorAll('.payment-page');
+      paymentPageElements.forEach(el => {
+        el.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${primaryAction} 100%)`;
+      });
+
+      document.querySelector('.impact').style.background = secondarySurface;
+      
+      const textElements = document.querySelectorAll('.mission h2, .gallery-caption h3, .stat-number, .payment-header h2, .wallet-address');
+      textElements.forEach(el => {
+        el.style.color = textColor;
+      });
+
+      document.querySelector('.donate-btn').style.color = primaryAction;
+      
+      const primaryButtons = document.querySelectorAll('.copy-btn');
+      primaryButtons.forEach(btn => {
+        if (!btn.classList.contains('copied')) {
+          btn.style.background = primaryAction;
+        }
+      });
+
+      const secondaryButtons = document.querySelectorAll('.back-btn');
+      secondaryButtons.forEach(btn => {
+        btn.style.color = textColor;
+      });
+
+      // Update fonts
+      const fontStack = `${fontFamily}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`;
+      document.body.style.fontFamily = fontStack;
+
+      // Update font sizes proportionally
+      document.querySelector('.hero h1').style.fontSize = `${fontSize * 3}px`;
+      document.querySelector('.hero p').style.fontSize = `${fontSize * 1.3}px`;
+      document.querySelector('.donate-btn').style.fontSize = `${fontSize * 1.2}px`;
+      document.querySelector('.mission h2').style.fontSize = `${fontSize * 2.5}px`;
+      document.querySelector('.mission p').style.fontSize = `${fontSize * 1.2}px`;
+      
+      const h3Elements = document.querySelectorAll('.gallery-caption h3');
+      h3Elements.forEach(el => {
+        el.style.fontSize = `${fontSize * 1.3}px`;
+      });
+
+      document.querySelector('.stat-number').style.fontSize = `${fontSize * 3}px`;
+      document.querySelector('.payment-header h2').style.fontSize = `${fontSize * 2.2}px`;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.secondary_surface || defaultConfig.secondary_surface,
+            set: (value) => {
+              config.secondary_surface = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ secondary_surface: value });
+              }
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.primary_action || defaultConfig.primary_action,
+            set: (value) => {
+              config.primary_action = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ primary_action: value });
+              }
+            }
+          },
+          {
+            get: () => config.secondary_action || defaultConfig.secondary_action,
+            set: (value) => {
+              config.secondary_action = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ secondary_action: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["main_title", config.main_title || defaultConfig.main_title],
+        ["subtitle", config.subtitle || defaultConfig.subtitle],
+        ["mission_title", config.mission_title || defaultConfig.mission_title],
+        ["mission_text", config.mission_text || defaultConfig.mission_text],
+        ["cta_button", config.cta_button || defaultConfig.cta_button],
+        ["footer_text", config.footer_text || defaultConfig.footer_text]
+      ]);
+    }
+
+    // Page navigation
+    const donateButton = document.getElementById('donateButton');
+    const backButton = document.getElementById('backButton');
+    const homePage = document.getElementById('homePage');
+    const paymentPage = document.getElementById('paymentPage');
+
+    donateButton.addEventListener('click', () => {
+      homePage.classList.remove('active');
+      paymentPage.classList.add('active');
+    });
+
+    backButton.addEventListener('click', () => {
+      paymentPage.classList.remove('active');
+      homePage.classList.add('active');
+    });
+
+    // Copy wallet address
+    const copyButton = document.getElementById('copyButton');
+    const walletAddress = document.getElementById('walletAddress');
+
+    copyButton.addEventListener('click', async () => {
+      const address = walletAddress.textContent;
+      
+      try {
+        await navigator.clipboard.writeText(address);
+        copyButton.textContent = '✓ Copied!';
+        copyButton.classList.add('copied');
+        
+        setTimeout(() => {
+          copyButton.textContent = 'Copy Wallet Address';
+          copyButton.classList.remove('copied');
+        }, 2000);
+      } catch (err) {
+        // Fallback for browsers that don't support clipboard API
+        const textArea = document.createElement('textarea');
+        textArea.value = address;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        
+        try {
+          document.execCommand('copy');
+          copyButton.textContent = '✓ Copied!';
+          copyButton.classList.add('copied');
+          
+          setTimeout(() => {
+            copyButton.textContent = 'Copy Wallet Address';
+            copyButton.classList.remove('copied');
+          }, 2000);
+        } catch (err) {
+          copyButton.textContent = 'Copy failed';
+          setTimeout(() => {
+            copyButton.textContent = 'Copy Wallet Address';
+          }, 2000);
+        }
+        
+        document.body.removeChild(textArea);
+      }
+    });
+
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a2fb228b1271c61',t:'MTc2Mzg5MDczMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
